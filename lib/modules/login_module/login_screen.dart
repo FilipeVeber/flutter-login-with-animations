@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'animations/stagger_animation.dart';
 import 'widgets/form_container.dart';
 import 'widgets/sign_up_button.dart';
 
@@ -8,7 +9,23 @@ class LoginScreen extends StatefulWidget {
   _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends State<LoginScreen>
+    with SingleTickerProviderStateMixin {
+  AnimationController _animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 2));
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: EdgeInsets.zero,
           children: <Widget>[
             Stack(
+              alignment: Alignment.bottomCenter,
               children: <Widget>[
                 Column(
                   children: <Widget>[
@@ -35,7 +53,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     FormContainer(),
                     SignUpButton(),
                   ],
-                )
+                ),
+                StaggerAnimation(controller: _animationController.view)
               ],
             )
           ],
