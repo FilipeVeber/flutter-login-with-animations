@@ -5,9 +5,14 @@ class StaggerAnimation extends StatelessWidget {
 
   StaggerAnimation({this.controller})
       : buttonSqueeze = Tween<double>(begin: 290, end: 60).animate(
-            CurvedAnimation(parent: controller, curve: Interval(0, 0.150)));
+            CurvedAnimation(parent: controller, curve: Interval(0, 0.150))),
+        buttonZoomOut = Tween<double>(begin: 60, end: 1000).animate(
+            CurvedAnimation(
+                parent: controller,
+                curve: Interval(0.5, 1, curve: Curves.bounceOut)));
 
   final Animation<double> buttonSqueeze;
+  final Animation<double> buttonZoomOut;
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +26,25 @@ class StaggerAnimation extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(bottom: 50),
       child: InkWell(
-        child: Container(
-          width: buttonSqueeze.value,
-          height: 60,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              color: Color.fromRGBO(247, 64, 106, 1),
-              borderRadius: BorderRadius.all(Radius.circular(30))),
-          child: _buildInside(context),
-        ),
+        child: buttonZoomOut.value == 60
+            ? Container(
+                width: buttonSqueeze.value,
+                height: 60,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: Color.fromRGBO(247, 64, 106, 1),
+                    borderRadius: BorderRadius.all(Radius.circular(30))),
+                child: _buildInside(context),
+              )
+            : Container(
+                width: buttonZoomOut.value,
+                height: buttonZoomOut.value,
+                decoration: BoxDecoration(
+                    color: Color.fromRGBO(247, 64, 106, 1),
+                    shape: buttonZoomOut.value < 300
+                        ? BoxShape.circle
+                        : BoxShape.rectangle),
+              ),
         onTap: () {
           controller.forward();
         },
