@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'home_category_view.dart';
+
 class HomeTop extends StatelessWidget {
   final Animation<double> containerGrow;
 
@@ -54,7 +56,7 @@ class HomeTop extends StatelessWidget {
                       shape: BoxShape.circle,
                       color: Color.fromRGBO(80, 210, 194, 1))),
             ),
-            Container(),
+            HomeCategoryView(),
           ],
         ),
       ),
