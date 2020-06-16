@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login_with_animation/modules/home_module/widgets/home_list_data.dart';
 
-class AnimatedListView extends StatelessWidget {
+class HomeAnimatedListView extends StatelessWidget {
   final Animation<EdgeInsets> listSlidePosition;
 
-  AnimatedListView({@required this.listSlidePosition});
+  HomeAnimatedListView({@required this.listSlidePosition});
 
   @override
   Widget build(BuildContext context) {
-//    timeDilation = 1;
     return Stack(
       alignment: Alignment.bottomCenter,
       children: <Widget>[

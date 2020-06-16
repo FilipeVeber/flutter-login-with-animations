@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'file:///C:/Users/supero/Documents/Projects/flutter/udemy/animacoes/flutter_login_with_animation/lib/modules/home_module/animations/stagger_animation.dart';
+import 'animations/home_stagger_animation.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
-    return StaggerAnimation(
+    return HomeStaggerAnimation(
       controller: _controller,
     );
   }
